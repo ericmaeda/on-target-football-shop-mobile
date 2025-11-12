@@ -53,3 +53,55 @@
 </ul>
 
 <br>
+
+<h1>Tugas 8</h1>
+<hr>
+
+<h3>Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?</h3>
+<ul>
+  <li>
+    Navigator.push() berfungsi untuk menambahkan halaman baru di atas halaman saat ini di stack navigasi.
+Dengan Navigator.push() pengguna masih bisa kembali ke halaman sebelumnya dengan tombol back.
+  </li>
+  <li>
+    Navigator.pushReplacement() akan mengganti halaman saat ini dengan halaman baru (halaman lama dihapus dari stack).
+Navigator.pushReplacement() digunakan jika kita tidak ingin user bisa kembali ke halaman sebelumnya.
+  </li>
+</ul>
+
+<br>
+
+<h3>Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?</h3>
+<ul>
+  <li>
+    Scaffold --> Menjadi kerangka utama halaman dimana di dalamnya ada struktur dasar seperti AppBar, Drawer, dan body.
+    Dengan Scaffold, setiap halaman punya tata letak yang konsisten.
+  </li>
+  <li>
+    Appbar --> Berfungsi sebagai judul halaman dan memberikan identitas visual. 
+  </li>
+  <li>
+    Drawer (LeftDrawer) --> Digunakan untuk menampilkan navigasi utama aplikasi, misalnya akses ke halaman All Products, My Products, dan Logout.
+Dengan menaruh Drawer di tiap halaman, pengguna bisa berpindah antar menu tanpa harus kembali ke home.
+  </li>
+</ul>
+
+<br>
+
+<h3>Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.</h3>
+<ul>
+  <li>
+    Padding --> Memberi jarak antar elemen form supaya tidak terlalu dekat. Padding membuat form kita menjadi lebih nyaman dibaca dan tidak terlihat "penuh".
+  </li>
+  <li>
+    SingleChildScrollView --> Berguna supaya form bisa discroll saat layar kecil (misal HP kecil atau keyboard terbuka). SingleChildScrollView mencegah tampilan “overflow” ketika form-nya panjang.
+  </li>
+  <li>
+    ListView --> Jika elemen banyak dan dinamis, ListView berguna untuk menampilkan daftar secara scrollable dan efisien.
+  </li>
+</ul>
+
+<h3></h3>
+<p>
+  Dalam aplikasi On Target Football Shop, penyesuaian warna tema dilakukan untuk menciptakan identitas visual yang konsisten dan mudah dikenali oleh pengguna. Pengaturan warna ini dilakukan melalui properti theme di MaterialApp. Pendekatan ini memastikan bahwa seluruh komponen aplikasi secara otomatis mengikuti skema warna yang seragam tanpa perlu diatur satu per satu. Dengan konsistensi tersebut, tampilan aplikasi menjadi lebih profesional dan memiliki karakter visual yang kuat, sekaligus memperkuat citra brand “On Target Football Shop” sebagai aplikasi yang modern dan terintegrasi dengan baik.
+</p>
