@@ -101,7 +101,7 @@ Dengan menaruh Drawer di tiap halaman, pengguna bisa berpindah antar menu tanpa 
   </li>
 </ul>
 
-<h3></h3>
+<h3>Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?</h3>
 <p>
   Dalam aplikasi On Target Football Shop, penyesuaian warna tema dilakukan untuk menciptakan identitas visual yang konsisten dan mudah dikenali oleh pengguna. Pengaturan warna ini dilakukan melalui properti theme di MaterialApp. Pendekatan ini memastikan bahwa seluruh komponen aplikasi secara otomatis mengikuti skema warna yang seragam tanpa perlu diatur satu per satu. Dengan konsistensi tersebut, tampilan aplikasi menjadi lebih profesional dan memiliki karakter visual yang kuat, sekaligus memperkuat citra brand “On Target Football Shop” sebagai aplikasi yang modern dan terintegrasi dengan baik.
 </p>
