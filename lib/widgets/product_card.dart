@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:on_target_mobile/screens/product_form.dart';
 import 'package:on_target_mobile/screens/menu.dart';
+import 'package:on_target_mobile/screens/product_entry_list.dart';
+import 'package:on_target_mobile/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ItemCard extends StatelessWidget {
   // Menampilkan kartu dengan ikon dan nama.
@@ -23,6 +27,7 @@ class ItemCard extends StatelessWidget {
       bgColor = Theme.of(context).colorScheme.secondary;
     }
 
+    final request = context.watch<CookieRequest>();
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
       color: bgColor,
@@ -31,7 +36,7 @@ class ItemCard extends StatelessWidget {
 
       child: InkWell(
         // Aksi ketika kartu ditekan.
-          onTap: () {
+          onTap: () async {
             // Memunculkan SnackBar ketika diklik
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
@@ -45,7 +50,42 @@ class ItemCard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ProductFormPage()),
               );
             }
-
+            else if (item.name == "See Products") {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProductEntryListPage()
+                  ),
+              );
+            }
+            // Add this after your previous if statements
+            else if (item.name == "Logout") {
+              // TODO: Replace the URL with your app's URL and don't forget to add a trailing slash (/)!
+              // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
+              // If you using chrome,  use URL http://localhost:8000
+              
+              final response = await request.logout(
+                  "http://127.0.0.1:8000/auth/logout/");
+              String message = response["message"];
+              if (context.mounted) {
+                  if (response['status']) {
+                      String uname = response["username"];
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("$message See you again, $uname."),
+                      ));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
+                      );
+                  } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(message),
+                          ),
+                      );
+                  }
+              }
+          }
           },
         // Container untuk menyimpan Icon dan Text
         child: Container(
