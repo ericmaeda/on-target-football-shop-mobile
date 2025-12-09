@@ -62,10 +62,6 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.article_outlined),
-            title: const Text('Detail Product'),
-          ),
-          ListTile(
             leading: const Icon(Icons.add_reaction_rounded),
             title: const Text('Product List'),
             onTap: () {
