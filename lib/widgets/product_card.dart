@@ -17,11 +17,11 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Color bgColor;
 
-    if (item.name == "All Products") {
-      bgColor = Colors.blue;
-    } else if (item.name == "Add Product") {
+    if (item.name == "Add Products") {
+      bgColor = Colors.lightGreenAccent;
+    } else if (item.name == "My Products") {
       bgColor = Colors.green;
-    } else if (item.name == "Logout") {
+    } else if (item.name == "Create Product") {
       bgColor = Colors.red;
     } else {
       bgColor = Theme.of(context).colorScheme.secondary;
@@ -50,7 +50,7 @@ class ItemCard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => ProductFormPage()),
               );
             }
-            else if (item.name == "See Products") {
+            else if (item.name == "My Products") {
               Navigator.push(
                   context,
                   MaterialPageRoute(

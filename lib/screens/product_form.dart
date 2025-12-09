@@ -21,15 +21,28 @@ class _ProductFormPageState extends State<ProductFormPage> {
   String _category = ""; // default
   String _thumbnail = "";
   bool _isFeatured = false; // default
+  List<String> _brand = [
+                                'adios',
+                                'Niki',
+                                'miles',
+                                'umbre',
+                                'erspa',
+                                'amersfoort',
+                                'seabook'
+                              ];
+  int _numericSize = 0;
+  String _alphabeticSize = "";
+  int _quantity = 0;
 
   final List<String> _categories = [
-    'jersey',
-    'balls',
-    'shoes',
-    'accessories',
-    'merchandise',
-    'training gear',
-  ];
+  'jersey',
+  'short',
+  'gloves',
+  'boots',
+  'ball',
+  'socks',
+  'others',
+];
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +187,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     }
                     return null;
                   },
-
                 ),
               ),
 
@@ -192,6 +204,82 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
               ),
 
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    labelText: "Brand",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  items: _brand.map((b) => DropdownMenuItem(
+                    value: b,
+                    child: Text(b),
+                  )).toList(),
+                  onChanged: (value) {
+                    setState(() => _brand = value! as List<String>);
+                  },
+                  validator: (value) =>
+                    value == null || value.isEmpty ? "Brand wajib dipilih!" : null,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Numeric Size",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (val) =>
+                      setState(() => _numericSize = int.tryParse(val) ?? 0),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Numeric size wajib!";
+                    if (int.tryParse(val) == null) return "Harus angka!";
+                    return null;
+                  },
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Alphabetic Size",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (val) => setState(() => _alphabeticSize = val),
+                  validator: (val) =>
+                    val == null || val.isEmpty ? "Alphabetic size wajib!" : null,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Quantity",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (val) =>
+                      setState(() => _quantity = int.tryParse(val) ?? 0),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Quantity wajib!";
+                    if (int.tryParse(val) == null) return "Harus angka!";
+                    return null;
+                  },
+                ),
+              ),
+              
               // === Tombol Simpan ===
               Align(
                 alignment: Alignment.bottomCenter,
@@ -206,7 +294,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         // TODO: Replace the URL with your app's URL
                         // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
                         // If you using chrome,  use URL http://localhost:8000
-                        
+
                         final response = await request.postJson(
                           "http://127.0.0.1:8000/create-flutter/",
                           jsonEncode({
@@ -216,24 +304,33 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             "thumbnail": _thumbnail,
                             "category": _category,
                             "is_featured": _isFeatured,
+                            "brand": _brand,
+                            "numeric_size": _numericSize,
+                            "alphabetic_size": _alphabeticSize,
+                            "quantity": _quantity,
                           }),
                         );
                         if (context.mounted) {
                           if (response['status'] == 'success') {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text("News successfully saved!"),
-                            ));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Product successfully saved!"),
+                              ),
+                            );
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage()),
+                                builder: (context) => MyHomePage(),
+                              ),
                             );
                           } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text("Something went wrong, please try again."),
-                            ));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  "Something went wrong, please try again.",
+                                ),
+                              ),
+                            );
                           }
                         }
                       }

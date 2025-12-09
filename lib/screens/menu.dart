@@ -10,9 +10,9 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "E";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.newspaper),
-    ItemHomepage("Add Product", Icons.add),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Add Products", Icons.newspaper),
+    ItemHomepage("My Products", Icons.add),
+    ItemHomepage("Create Product", Icons.logout),
   ];
 
   @override
@@ -21,9 +21,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
-        // Judul aplikasi "Football News" dengan teks putih dan tebal.
+        // Judul aplikasi "On Target Mobile" dengan teks putih dan tebal.
         title: const Text(
-          'Football News',
+          'On Target Mobile',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.

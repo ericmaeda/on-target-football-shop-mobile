@@ -39,7 +39,7 @@ class _ProductEntryListPageState extends State<ProductEntryListPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News Entry List'),
+        title: const Text('Product Entry List'),
       ),
       drawer: const LeftDrawer(),
       body: FutureBuilder(

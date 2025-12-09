@@ -5,7 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:on_target_mobile/screens/register.dart';
 
 void main() {
-  runApp(const LoginApp());
+  runApp(
+    Provider<CookieRequest>(
+      create: (_) => CookieRequest(),
+      child: const LoginApp(),
+    ),
+  );
 }
 
 class LoginApp extends StatelessWidget {
@@ -39,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    final request = context.read<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
